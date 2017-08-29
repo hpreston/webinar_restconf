@@ -1,0 +1,427 @@
+{
+	"variables": [],
+	"info": {
+		"name": "CLN RESTCONF",
+		"_postman_id": "2d23bac2-3dc0-67b3-7045-f22595119f18",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Read the top level REST resource",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/.well-known/host-meta",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read models implemented by the device",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Body matches string\"] = responseBody.has(\"interface\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/restconf/data/netconf-state/capabilities",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read ietf-interfaces list of interface names",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/restconf/data/ietf-interfaces:interfaces",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read Interface Configuration with ietf-interfaces",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/restconf/data/ietf-interfaces:interfaces/interface=GigabitEthernet2",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ietf-interfaces:interface\": {\n        \"name\": \"GigabitEthernet2\",\n        \"description\": \"Configured by RESTCONF\",\n        \"type\": \"iana-if-type:ethernetCsmacd\",\n        \"enabled\": true,\n        \"ietf-ip:ipv4\": {\n            \"address\": [\n                {\n                    \"ip\": \"10.255.255.1\",\n                    \"netmask\": \"255.255.255.0\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Configure Interface with ietf-interfaces",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/restconf/data/ietf-interfaces:interfaces/interface=GigabitEthernet2",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ietf-interfaces:interface\": {\n        \"name\": \"GigabitEthernet2\",\n        \"description\": \"Configured by RESTCONF\",\n        \"type\": \"iana-if-type:ethernetCsmacd\",\n        \"enabled\": true,\n        \"ietf-ip:ipv4\": {\n            \"address\": [\n                {\n                    \"ip\": \"10.255.255.1\",\n                    \"netmask\": \"255.255.255.0\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read Operational State ietf-interfaces",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/restconf/data/ietf-interfaces:interfaces-state/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read Interface Configuration with IOS XE Native",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/restconf/data/Cisco-IOS-XE-native:native/interface",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read Standard Access Lists with IOS XE Native",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/restconf/data/Cisco-IOS-XE-native:native/ip/access-list/standard",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create Standard Access List with IOS XE Native",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/restconf/data/Cisco-IOS-XE-native:native/ip/access-list",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Cisco-IOS-XE-acl:standard\": [\n        {\n            \"name\": \"RESTCONF_ACL\",\n            \"access-list-seq-rule\": [\n                {\n                    \"sequence\": 10,\n                    \"permit\": {\n                        \"std-ace\": {\n                            \"ipv4-prefix\": \"172.16.0.0\",\n                            \"mask\": \"0.0.255.255\"\n                        }\n                    }\n                },\n                {\n                    \"sequence\": 20,\n                    \"permit\": {\n                        \"std-ace\": {\n                            \"ipv4-prefix\": \"172.17.0.0\",\n                            \"mask\": \"0.0.255.255\"\n                        }\n                    }\n                },\n                {\n                    \"sequence\": 30,\n                    \"deny\": {\n                        \"std-ace\": {\n                            \"ipv4-prefix\": \"172.18.0.0\",\n                            \"mask\": \"0.0.255.255\"\n                        }\n                    }\n                }\n            ]\n        }\n    ]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Read Single Standard Access List with IOS XE Native",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/restconf/data/Cisco-IOS-XE-native:native/ip/access-list/standard=RESTCONF_ACL",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Single Standard Access List with IOS XE Native",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{username}}",
+						"password": "{{password}}",
+						"saveHelperData": true,
+						"showPassword": false
+					}
+				},
+				"url": "https://{{host}}:{{port}}/restconf/data/Cisco-IOS-XE-native:native/ip/access-list/standard=RESTCONF_ACL",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic cm9vdDpjaXNjbzEyMw==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
