@@ -1,6 +1,6 @@
-# Cisco Learning Network RESTCONF Webinar
+# RESTCONF Webinar
 
-Code and Samples for the Cisco Learning Network Webinar on RESTCONF
+Code and Samples for my webinar on RESTCONF
 
 # Pre-Reqs 
 ## DevNet Sandbox 
